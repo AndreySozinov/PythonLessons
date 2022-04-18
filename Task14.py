@@ -1,3 +1,4 @@
+# 14. Посчитайте, сколько раз символ встречается в строке.
 string = 'What a beautiful world!'
 symbol = 'a'
 sum = 0
