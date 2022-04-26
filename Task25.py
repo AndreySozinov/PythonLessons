@@ -14,3 +14,5 @@ while len(list2) < len(list1):
         list2.append(list1[index])
 
 print(list2)
+
+# Хотя можно перемешивать в одном списке с помошью кортежей.
