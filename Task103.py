@@ -10,7 +10,13 @@ def PolySum(list1, list2):
     while i < length-1 and j < length-1:
         if ('x' in list1[i] or 'x' in list2[j]) and list1[i][-1] != 'x' and list2[j][-1] != 'x':
             if list1[i][list1[i].index('^'):] == list2[j][list2[j].index('^'):]: 
-                member = int(list1[i][:list1[i].index('x')]) + int(list2[j][:list2[j].index('x')])
+                if list1[i].index('x') > 0:
+                    a = int(list1[i][:list1[i].index('x')])
+                else: a = 1
+                if list2[j].index('x') > 0:
+                    b = int(list2[j][:list2[j].index('x')])
+                else: b = 1
+                member = a + b
                 result = result + str(member) + list1[i][list1[i].index('x'):] + ' + '
                 i += 1
                 j += 1
@@ -18,10 +24,21 @@ def PolySum(list1, list2):
                 result = result + list1[i] + ' + '
                 i += 1
             else: 
-                result = result + list2[i] + ' + '
+                result = result + list2[j] + ' + '
                 j += 1
         else: 
-            member = int(list1[i][:list1[i].index('x')]) + int(list2[j][:list2[j].index('x')])
+            if 'x' in list1[i]: 
+                if list1[i].index('x') > 0:
+                    a = int(list1[i][:list1[i].index('x')])
+                else: a = 1
+            else: a = 0
+            if 'x' in list2[i]: 
+                if list2[i].index('x') != 0:
+                    b = int(list2[i][:list2[i].index('x')])
+                else: b = 1
+            else: b = 0
+            
+            member = a + b
             i += 1
             j += 1
             result = result + str(member) + 'x + '
@@ -61,3 +78,7 @@ polynom2 = polynom2.split(' ')
 
 print('Сумма многочленов:')
 print(PolySum(polynom1, polynom2))
+
+file = open('file1.txt', 'w')
+file.write(PolySum(polynom1, polynom2))
+file.close
