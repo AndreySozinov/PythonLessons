@@ -27,10 +27,10 @@ def PolynomForming (power, coefficients): # Формируем многочле�
 k = int(input('k = ?\n'))
 
 
-coeff = [randint(0, 10) for x in range(k + 1)]
+coeff = [randint(0, 100) for x in range(k + 1)]
 polynom1 = (PolynomForming(k, coeff))
 
-coeff = [randint(0, 10) for x in range(k + 1)]
+coeff = [randint(0, 100) for x in range(k + 1)]
 polynom2 = (PolynomForming(k, coeff))
 
 print(f'{polynom1}\n{polynom2}')

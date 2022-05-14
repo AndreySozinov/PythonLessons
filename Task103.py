@@ -4,11 +4,13 @@
 def PolySum(list1, list2):
     result = ""
     if len(list1) > len(list2): length = len(list1)
-    else: length = len(list2)
+    else: length = len(list2) # находим длину самого длинного списка
     i = 0
     j = 0
-    while i < length-1 and j < length-1:
+    while i < length and j < length: # перебираем элементы списков
+        # проверяем, что в элементе есть х и что есть коэффициенты
         if ('x' in list1[i] or 'x' in list2[j]) and list1[i][-1] != 'x' and list2[j][-1] != 'x':
+            # если степени равны складываем коэффициенты (если коэффициента нет прибавляем 1)
             if list1[i][list1[i].index('^'):] == list2[j][list2[j].index('^'):]: 
                 if list1[i].index('x') > 0:
                     a = int(list1[i][:list1[i].index('x')])
@@ -16,33 +18,43 @@ def PolySum(list1, list2):
                 if list2[j].index('x') > 0:
                     b = int(list2[j][:list2[j].index('x')])
                 else: b = 1
-                member = a + b
+                member = a + b # складываем коэффициенты и записываем в строку
                 result = result + str(member) + list1[i][list1[i].index('x'):] + ' + '
                 i += 1
                 j += 1
+            # если же степени не равны, дописываем в строку элемент с большей степенью
             elif list1[i][list1[i].index('^'):] > list2[j][list2[j].index('^'):]:
                 result = result + list1[i] + ' + '
                 i += 1
             else: 
                 result = result + list2[j] + ' + '
                 j += 1
-        else: 
-            if 'x' in list1[i]: 
+        else: # проверка на наличие х и наличие коэффициента если степени нет
+            if 'x' in list1[i]: # если х есть, берем коэффициент или 1
                 if list1[i].index('x') > 0:
                     a = int(list1[i][:list1[i].index('x')])
                 else: a = 1
-            else: a = 0
-            if 'x' in list2[i]: 
-                if list2[i].index('x') != 0:
-                    b = int(list2[i][:list2[i].index('x')])
+                i += 1
+            else: a = 0 # если х нет - коэффициент обнуляем
+            i += 1
+            if 'x' in list2[j]: # то же для второго списка
+                if list2[j].index('x') > 0:
+                    b = int(list2[j][:list2[j].index('x')])
                 else: b = 1
+                j += 1
             else: b = 0
+            j += 1
             
             member = a + b
-            i += 1
-            j += 1
             result = result + str(member) + 'x + '
-            result = result + str(int(list1[-1]) + int(list2[-1])) + ' = 0' 
+
+    # складываем последние коэффициенты они же последние элементы списков
+    if 'x' not in list1[-1]: a = int(list1[-1])
+    else: a = 0
+    if 'x' not in list2[-1]: b = int(list2[-1])
+    else: b = 0
+    if a == 0 and b == 0: result = result[:-3] + ' = 0'
+    else: result = result + str(a + b) + ' = 0' 
 
     return result
 
