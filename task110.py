@@ -1,7 +1,7 @@
 # Реализовать RLE алгоритм. реализовать модуль сжатия и восстановления данных.
 # входные и выходные данные хранятся в отдельных текстовых файлах
 
-def Rls(string):
+def RlsCompression(string):
     count = 1
     res = ""
     for i in range(len(string)-1):
@@ -12,6 +12,30 @@ def Rls(string):
             count = 1
     return res + str(count) + string[i]
 
+def RlsDecompression(string):
+    res = ""
+    for i in range(0, len(string)-1, 2):
+        for j in range(int(string[i])):
+            res = res + string[i+1]
+    return res
 
 
-print(Rls("AAAAAAAABCCCDD"))
+file = open('rlsdecompress.txt', 'r')
+rawdata = file.read()
+file.close
+
+compress = RlsCompression(rawdata)
+
+file = open('rlscompress.txt', 'w')
+file.write(compress)
+file.close
+
+file = open('rlscompress.txt', 'r')
+data = file.read()
+file.close
+
+decompress = RlsDecompression(data)
+
+file = open('rlsdecompress.txt', 'w')
+file.write(decompress)
+file.close
