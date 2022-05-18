@@ -4,7 +4,8 @@
 
 # Задаем выражение:
 expression = "11-2*300+6/2"
-print(f'{expression} = ')
+
+print(f'{expression} = ', end='')
 
 elements = []
 pos = 0
@@ -49,5 +50,4 @@ while "+" in elements or "-" in elements:
         elements.insert(minuspos-1, result)
         minuspos = len(elements)
 
-result = float(elements[0])
-print(result)
+print(elements[0])
