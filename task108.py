@@ -85,13 +85,13 @@ def BotMove (array): # Ход бота
 arr = [[1,2,3],[4,5,6],[7,8,9]]
 Gamefield(arr)
 
-for i in range(4):
+for i in range(4): # Четыре хода для обоих игроков
     PlayerMove(arr)
     WinTest(arr)
     BotMove(arr)
     Gamefield(arr)
     WinTest(arr)
-PlayerMove(arr)
+PlayerMove(arr) # Пятый ход
 Gamefield(arr)
 WinTest(arr)
 print('Ничья')
